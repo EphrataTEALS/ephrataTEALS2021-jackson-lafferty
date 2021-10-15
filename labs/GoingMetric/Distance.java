@@ -4,6 +4,6 @@ public class Distance {
         double feet = 300;
         double meters = (feet * 0.3048);
         System.out.println("The distance of the 100 yard dash in meters is " + meters + " meters.");
-        System.out.println("The 100 meter dash is 8.56 meters longer than the 100 yard dash.");
+        System.out.println("The 100 meter dash is " + (100 - meters) + " meters longer than the 100 yard dash.");
     }
 }
