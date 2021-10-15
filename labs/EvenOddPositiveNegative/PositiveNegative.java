@@ -7,7 +7,7 @@ public class PositiveNegative {
         } else if (x < 0) {
             System.out.println(x + " is a negative number!");
          } else {
-             System.out.println(x + " is neither positive or negative!");
+             System.out.println(x + " is neither positive nor negative!");
          }
     }
 }
