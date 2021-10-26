@@ -1,6 +1,5 @@
-
+package studentWork.redundancy;
 import java.util.Scanner;
-
 
 public class Problem1 {
     public static void main(String[] args) {
@@ -12,13 +11,12 @@ public class Problem1 {
         int a = 0;
 
         if (x < 30) {
-            a = 2;
             x++;
-            System.out.println("Spongebob Squarepants! " + x);
-        } else {
-            a = 2;
-            System.out.println("Spongebob Squarepants! " + x);
         }
+        a = 2;
+        System.out.println("Spongebob Squarepants! " + x);
         System.out.println(a);
+
+        console.close();
     }
 }
