@@ -6,22 +6,19 @@ public class BettingGame {
         Scanner in = new Scanner(System.in);                //setting scanner/random
         Random rng = new Random();
         
-        int money = 100;                                   //setting intial money/bet/prediction/flip/rounds
-        int bet = 0;
-        int prediction = 0;
-        int flip = 0;
+        int money = 100;                                   //setting intial money/rounds
         int rounds = 5;
 
         System.out.println("You will start with $" + money + ".\nTry to double your amount in 5 rounds by betting on a coin!\nEach successful bet will add the amount you bet to your total money.");
 
         for (int i = 0; i < rounds; i++) {
             System.out.print("Your bet amount: ");                              //setting bet amount
-            bet = in.nextInt();
+            int bet = in.nextInt();
 
             System.out.print("Your prediction (1 = heads, 2 = tails): ");       //setting user's prediction
-            prediction = in.nextInt();
+            int prediction = in.nextInt();
 
-            flip = rng.nextInt(2) + 1;                                          //flipping the coin
+            int flip = rng.nextInt(2) + 1;                                          //flipping the coin
 
             if (money == 0) {                                                   //conditions for bet
                 System.out.println("You have no money to bet. Game Over!");
