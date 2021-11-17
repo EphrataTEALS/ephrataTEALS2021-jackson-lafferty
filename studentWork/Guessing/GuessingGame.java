@@ -1,4 +1,4 @@
-package studentWork.random;
+package studentWork.Guessing;
 import java.util.*;
 
 public class GuessingGame {

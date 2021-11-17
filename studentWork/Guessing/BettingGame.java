@@ -1,4 +1,4 @@
-package labs.Scanners;
+package studentWork.Guessing;
 import java.util.*;
 
 public class BettingGame {
