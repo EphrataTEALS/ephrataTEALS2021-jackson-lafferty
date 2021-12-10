@@ -6,28 +6,23 @@ public class Games {
     Scanner in = new Scanner(System.in);
     boolean quit = false;
 
-
         while (quit == false) {
+
             System.out.print("What games would you like to play? Type 'dice', 'coin', or 'guessing'. You can also type 'quit' to quit: ");
             String game = in.nextLine();
 
             if (game.toLowerCase().equals("quit")) {
                 quit = true;
                 System.out.println("Goodbye!");
-            }
-            else if (game.toLowerCase().equals("coin")) {
+            } else if (game.toLowerCase().equals("coin")) {
                     coinGame();
-                    break;
                 } 
                 else if (game.toLowerCase().equals("guessing")) {
                     guessingGame();
-                    break;
                 } 
                 else if (game.toLowerCase().equals("dice")) {
                     diceGame();
-                    break;
-                } 
-            } else {
+                } else {
                 System.out.println("You entered an invalid input");
             }
         }
@@ -152,7 +147,7 @@ public class Games {
                 System.out.println("You entered an invalid guess.");
                 
                 } else {
-                    System.out.println("The coin was " + coinSide + "! You guessed incorreclty and your score is: " + score);
+                    System.out.println("The coin was " + coinSide + "! You guessed incorrectly and your score is: " + score);
                     win = false;
                 }
             }
