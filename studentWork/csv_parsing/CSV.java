@@ -1,3 +1,4 @@
+package studentWork.csv_parsing;
 public class CSV {
     /*
      * Write a method called `parseCSV`.
@@ -28,5 +29,21 @@ public class CSV {
     }
 
     /*** write your method here ***/
+    public static int parseCSV(String csv) {
+        int colNum = 1;
 
+        while (csv.indexOf(",") != -1) {
+            int commaIndex = csv.indexOf(",");
+            
+            String colData = csv.substring(0, commaIndex);
+            System.out.println(colData);
+
+            colNum++;
+
+            csv = csv.substring(commaIndex + 1);
+        }
+        System.out.print(colNum + ": " + csv);
+
+        return 0;
+    }
 }
