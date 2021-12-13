@@ -2,12 +2,11 @@ package labs.Game;
 import java.util.*;
 
 public class Games {
+    private static Scanner in = new Scanner(System.in);
     public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
     boolean quit = false;
 
         while (quit == false) {
-
             System.out.print("What games would you like to play? Type 'dice', 'coin', or 'guessing'. You can also type 'quit' to quit: ");
             String game = in.nextLine();
 
@@ -15,21 +14,20 @@ public class Games {
                 quit = true;
                 System.out.println("Goodbye!");
             } else if (game.toLowerCase().equals("coin")) {
-                    coinGame();
-                } 
-                else if (game.toLowerCase().equals("guessing")) {
-                    guessingGame();
-                } 
-                else if (game.toLowerCase().equals("dice")) {
-                    diceGame();
-                } else {
-                System.out.println("You entered an invalid input");
+                coinGame();
+            } 
+            else if (game.toLowerCase().equals("guessing")) {
+                guessingGame();
+            } 
+            else if (game.toLowerCase().equals("dice")) {
+                diceGame();
+            } else {
+            System.out.println("You entered an invalid input");
             }
         }
         in.close();
     }
     public static void diceGame() {
-        Scanner in = new Scanner(System.in);
         Random rng = new Random();
         boolean win = false;
         
@@ -96,8 +94,6 @@ public class Games {
                 win = true;
                 }
         }
-
-        in.close();
     }
 
     public static int play(String move, int roll) {
@@ -112,7 +108,6 @@ public class Games {
     }
 
     public static void coinGame() {
-        Scanner in = new Scanner(System.in);
         Random rng = new Random();
         int coinFlip = 0;
         int guessNum = 0;
@@ -152,9 +147,8 @@ public class Games {
                 }
             }
         }
-
-        in.close();
     }
+
         public static int guessNumber(String guess) {
             if (guess.toLowerCase().equals("heads")) {
                 return 0;
@@ -168,7 +162,6 @@ public class Games {
         }
 
     public static void guessingGame() {
-        Scanner in = new Scanner(System.in);
         Random rng = new Random();
         int guess = 0;
         int num = 1;
@@ -228,7 +221,6 @@ public class Games {
                 System.out.println("You entered an invalid value.");
             }
         }
-        in.close();
     }
 
     public static String determine(int guess, int num) {
