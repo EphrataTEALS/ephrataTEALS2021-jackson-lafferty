@@ -4,34 +4,37 @@ import java.util.*;
 public class Games {
     private static Scanner in = new Scanner(System.in);
     public static void main(String[] args) {
-    boolean quit = false;
+        boolean quit = false;
+        String game = "";
 
-        while (quit == false) {
-            System.out.print("What games would you like to play? Type 'dice', 'coin', or 'guessing'. You can also type 'quit' to quit: ");
-            String game = in.nextLine();
+            while (quit == false) {
+                System.out.print("What games would you like to play? Type 'dice', 'coin', or 'guessing'. You can also type 'quit' to quit: ");
+                game = in.nextLine();
 
-            if (game.toLowerCase().equals("quit")) {
-                quit = true;
-                System.out.println("Goodbye!");
-            } else if (game.toLowerCase().equals("coin")) {
-                coinGame();
-            } 
-            else if (game.toLowerCase().equals("guessing")) {
-                guessingGame();
-            } 
-            else if (game.toLowerCase().equals("dice")) {
-                diceGame();
-            } else {
-            System.out.println("You entered an invalid input");
+                if (game.toLowerCase().equals("quit")) {
+                    quit = true;
+                    System.out.println("Goodbye!");
+                } else if (game.toLowerCase().equals("coin")) {
+                    coinGame();
+                } 
+                else if (game.toLowerCase().equals("guessing")) {
+                    guessingGame();
+                    in.nextLine();
+                } 
+                else if (game.toLowerCase().equals("dice")) {
+                    diceGame();
+                } else {
+                System.out.println("You entered an invalid input");
+                }
             }
-        }
         in.close();
     }
+
     public static void diceGame() {
         Random rng = new Random();
         boolean win = false;
         
-        System.out.println("In this game whoever reaches the entered space first will win. On your turn you can either move forward 3 spaces or roll a die and move forward the value displayed on the die.");
+        System.out.println("In this game whoever reaches the entered space first will win.\nOn your turn you can either move forward 3 spaces or roll a die and move forward the value displayed on the die.");
 
         System.out.print("Player 1, enter your name: ");
         String p1 = in.nextLine();
@@ -40,6 +43,7 @@ public class Games {
 
         System.out.print("Enter the amount of spaces you want to race to: ");
         int endSpace = in.nextInt();
+        int sabotage = rng.nextInt(endSpace);
 
         int activePNum = 0;
         String activeP = p1;
@@ -48,12 +52,12 @@ public class Games {
         int p2Space = 0;
 
         String move = " ";
+        in.nextLine();
 
         while (win == false) {
             int roll = rng.nextInt(6) + 1;
 
             if (p1Space < endSpace && p2Space < endSpace) {
-
                 System.out.print(activeP + ", type 'move' to move 3 spaces or type 'roll' to roll the die: ");
                 move = in.nextLine();
 
@@ -64,10 +68,23 @@ public class Games {
                     if (activeP.equals(p1)) {
                         p1Space += spaces;
                         System.out.println(p1 + ", you moved forward " + spaces + " spaces and your new space is " + p1Space + ".");
+                        if (p1Space == sabotage) {
+                            System.out.println("Oh no! Suddenly a tornado appears and sends you flying back to the start!");
+                            p1Space = 0;
+                        }
 
                     } else if (activeP.equals(p2)) {
                         p2Space += spaces;
                         System.out.println(p2 + ", you moved forward " + spaces + " spaces and your new space is " + p2Space + ".");
+                        if (p2Space == sabotage) {
+                            System.out.println("Oh no! Suddenly a tornado appears and sends you flying back to the start!");
+                            p2Space = 0;
+                        }
+                    }
+                    
+                    if (p1Space == sabotage) {
+                        System.out.println("Oh no! Suddenly a tornado appears and sends you back to the start!");
+                        p1Space = 0;
                     }
 
                     activePNum += 1;
@@ -90,7 +107,7 @@ public class Games {
                     } else {
                         activeP = p2;
                     }
-                System.out.println(activeP + " won!");
+                System.out.println("----------" + activeP + " won!----------");
                 win = true;
                 }
         }
@@ -135,14 +152,14 @@ public class Games {
 
             if (guessNum == coinFlip) {
                 score++;
-                System.out.println("The coin was " + guess + "! You guessed correctly and your new score is: " + score);
+                System.out.println("The coin was " + guess + "! You guessed CORRECTLY and your new score is: " + score);
             
             } else if (guessNum != coinFlip) {
                 if (guessNum == 2) {
                 System.out.println("You entered an invalid guess.");
                 
                 } else {
-                    System.out.println("The coin was " + coinSide + "! You guessed incorrectly and your score is: " + score);
+                    System.out.println("The coin was " + coinSide + "! You guessed INCORRECTLY and your score is: " + score);
                     win = false;
                 }
             }
@@ -164,61 +181,42 @@ public class Games {
     public static void guessingGame() {
         Random rng = new Random();
         int guess = 0;
-        int num = 1;
+        int num = 0;
+        int choice = 0;
         int guesses = 0;
         boolean win = false;
 
         System.out.println("In this game you will try to guess the random number");
 
         System.out.println("There are 3 different difficulties. Easy (1-10), Medium (1-25), and Hard (1-50).");
-        System.out.print("Choose your difficulty of 'easy', 'medium', or 'hard': ");
-        String mode = in.nextLine();
 
         while (win == false) {
-            if (mode.toLowerCase().equals("easy")) {
-                num = rng.nextInt(10) + 1;
+            System.out.print("Choose your difficulty of 'easy', 'medium', or 'hard': ");
+            String mode = in.nextLine().toLowerCase();
 
-                while (guess != num) {
-                    System.out.print("Enter your guess: ");
-                    guess = in.nextInt();
-                    if (!determine(guess, num).equals(" ")) {
-                        System.out.println(determine(guess, num));
-                    }
-                    guesses++;
-                }
-                System.out.println("Congratulations! You guessed correctly in " + guesses + " guesses.");
-                win = true;
-
-            } else if (mode.toLowerCase().equals("medium")) {
-                num = rng.nextInt(25) + 1;
-
-                while (guess != num) {
-                    System.out.print("Enter your guess: ");
-                    guess = in.nextInt();
-                    if (!determine(guess, num).equals(" ")) {
-                        System.out.println(determine(guess, num));
-                    }
-                    guesses++;
-                }
-                System.out.println("Congratulations! You guessed correctly in " + guesses + " guesses.");
-                win = true;
-
-            } else if (mode.toLowerCase().equals("hard")) {
-                num = rng.nextInt(50) + 1;
-
-                while (guess != num) {
-                    System.out.print("Enter your guess: ");
-                    guess = in.nextInt();
-                    if (!determine(guess, num).equals(" ")) {
-                    System.out.println(determine(guess, num));
-                    }
-                    guesses++;
-                }
-                System.out.println("Congratulations! You guessed correctly in " + guesses + " guesses.");
-                win = true;
-
+            if (mode.equals("easy")) {
+                choice = 10;
+            } else if (mode.equals("medium")) {
+                choice = 25;
+            } else if (mode.equals("hard")) {
+                choice = 50;
             } else {
                 System.out.println("You entered an invalid value.");
+            }
+
+            if (choice != 0) {
+            num = rng.nextInt(choice) + 1;
+
+                while (guess != num) {
+                    System.out.print("Enter your guess: ");
+                    guess = in.nextInt();
+                    if (!determine(guess, num).equals(" ")) {
+                        System.out.println(determine(guess, num));
+                    }
+                    guesses++;
+                }
+                System.out.println("----------Congratulations! You guessed correctly in " + guesses + " guesses.----------");
+                win = true;
             }
         }
     }
@@ -228,7 +226,7 @@ public class Games {
         if (guess > num) {
             result = "Your guess is greater than the number.";
         } else if (guess < num) {
-            result = "Your geuss is less than the number.";
+            result = "Your guess is less than the number.";
         }
         return result;
     }
