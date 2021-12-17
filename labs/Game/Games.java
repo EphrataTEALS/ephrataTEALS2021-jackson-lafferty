@@ -63,7 +63,6 @@ public class Games {
 
                 if (move.toLowerCase().equals("move") || move.toLowerCase().equals("roll")) {
                     int spaces = play(move, roll);
-                    
 
                     if (activeP.equals(p1)) {
                         p1Space += spaces;
@@ -103,7 +102,6 @@ public class Games {
                 activePNum -= 1;
                     if (activePNum % 2 == 0) {
                         activeP = p1;
-
                     } else {
                         activeP = p2;
                     }
@@ -169,10 +167,8 @@ public class Games {
         public static int guessNumber(String guess) {
             if (guess.toLowerCase().equals("heads")) {
                 return 0;
-            
             } else if (guess.toLowerCase().equals("tails")) {
                 return 1;
-            
             } else {
                 return 2;
             }
