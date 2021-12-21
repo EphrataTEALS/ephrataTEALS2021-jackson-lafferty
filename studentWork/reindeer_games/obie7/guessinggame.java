@@ -1,3 +1,5 @@
+package studentWork.reindeer_games.obie7;
+
 import java.util.Scanner;
 import java.util.Random;
 public class guessinggame {

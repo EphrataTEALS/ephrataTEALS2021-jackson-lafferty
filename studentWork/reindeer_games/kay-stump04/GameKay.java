@@ -24,6 +24,6 @@ public class GameKay {
         } else {
             System.out.println("The choices were not the same: You lost");
         }
+        coinflip.close();
     }
-    
 }

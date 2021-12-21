@@ -226,6 +226,7 @@ public class Game {
         } else if (userChoice.equals("quit")){
             System.out.println("You have quit the game.");
         }
+        console.close();
         }  
     }
 }

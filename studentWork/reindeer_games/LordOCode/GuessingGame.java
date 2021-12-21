@@ -1,3 +1,5 @@
+package studentWork.reindeer_games.LordOCode;
+
  import java.util.Scanner;
  import java.util.Random;
 
